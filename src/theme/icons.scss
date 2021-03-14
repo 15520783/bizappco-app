@@ -1,0 +1,102 @@
+ion-icon {
+    &[class*="custom-"] {
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: currentColor;
+        width: 1em;
+        height: 1em;
+    }
+
+    &[class*="home-icon"] {
+        mask-image: url(/assets/icons/home.svg);
+    }
+
+    &[class*="umbrella-icon"] {
+        mask-image: url(/assets/icons/umbrella.svg);
+    }
+
+    &[class*="shop-icon"] {
+        mask-image: url(/assets/icons/shop.svg);
+    }
+
+    &[class*="user-icon"] {
+        mask-image: url(/assets/icons/user.svg);
+    }
+    
+    &[class*="technical-support-icon"] {
+        mask-image: url(/assets/icons/technical-support.svg);
+    }
+
+    &[class*="notification-icon"] {
+        mask-image: url(/assets/icons/bell-regular.svg);
+    }
+
+    &[class*="calendar-icon"] {
+        mask-image: url(/assets/icons/calendar.svg);
+    }
+
+    &[class*="arrow-circle-right-icon"] {
+        mask-image: url(/assets/icons/arrow-circle-right.svg);
+    }
+
+    &[class*="shopping-cart-icon"] {
+        mask-image: url(/assets/icons/shopping-cart.svg);
+    }
+    
+    &[class*="bill-icon"] {
+        mask-image: url(/assets/icons/bill.svg);
+    }
+
+    &[class*="errornetwork-icon"] {
+        mask-image: url(/assets/icons/wifi.svg);
+    }
+
+    &[class*="project-icon"] {
+        mask-image: url(/assets/icons/project.svg);
+    }
+
+    &[class*="transaction-icon"] {
+        mask-image: url(/assets/icons/transaction.svg);
+    }
+
+    &[class*="money-back-icon"] {
+        mask-image: url(/assets/icons/money-back.svg);
+    }
+    
+    &[class*="transfer-icon"] {
+        mask-image: url(/assets/icons/transfer.svg);
+    }
+
+    &[class*="customer-icon"] {
+        mask-image: url(/assets/icons/customer.svg);
+    }
+    
+    &[class*="report-icon"] {
+        mask-image: url(/assets/icons/report.svg);
+    }
+
+    &[class*="status-icon"] {
+        mask-image: url(/assets/icons/status.svg);
+    }
+
+    &[class*="ecommerce-icon"] {
+        mask-image: url(/assets/icons/ecommerce.svg);
+    }
+
+    &[class*="insurance-icon"] {
+        mask-image: url(/assets/icons/insurance.svg);
+    }
+
+    &[class*="alarm-icon"] {
+        mask-image: url(/assets/icons/alarm.svg);
+    }
+
+    &[class*="registers-icon"] {
+        mask-image: url(/assets/icons/registers.svg);
+    }
+
+    &[class*="question-icon"] {
+        mask-image: url(/assets/icons/question.svg);
+    }
+}

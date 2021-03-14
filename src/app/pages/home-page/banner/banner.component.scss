@@ -1,0 +1,39 @@
+.biznet-head-item-banner-left {
+    .toolbar-title {
+        text-align: left;
+    }
+}
+
+.biznet-head-item-banner-right {
+    .toolbar-title {
+        text-align: right;
+    }
+}
+
+.biznet-banner-title {
+    .toolbar-title {
+        text-align: left;
+        white-space: break-spaces;
+        min-width: 78vw;
+    }
+}
+
+.biznet-more-link {
+    font-size: 4vw;
+}
+
+.intro-text-banner {
+    font-size: 14px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    min-height: 55px;
+    max-height: 55px;
+    overflow: visible;
+    color: #333;
+}
+
+ion-slide {
+    width: 270px !important;
+}

@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-toolbar style="padding:0 10px 0 15px">
+    <ion-buttons>
+      <ion-row>
+        <ion-icon style="font-size: 34px;margin: auto;" src="/assets/icons/user.svg"></ion-icon>
+        <ion-col>
+          <ion-row style="padding: 0px 5px;">
+            <ion-col size="12" style="padding-top:0;padding-bottom: 0px;">
+              <ion-note color="light" class="ion-text-start" style="font-weight: normal;font-size: 10px;margin: 0px;">
+                Xin chào ,
+              </ion-note>
+            </ion-col><br>
+            <ion-col style="padding-top:0px;">
+              <h2 class="ion-text-start" style="margin: 0;font-size: 20px;" [innerHtml]="username?username:'Khách'">
+              </h2>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon style="font-size: 30px;" name="notifications"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content overflow-scroll="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" mode="md">
+    <ion-refresher-content *ngIf="platform.is('ios')" pullingIcon="null">
+    </ion-refresher-content>
+    <ion-refresher-content *ngIf="!platform.is('ios')">
+    </ion-refresher-content>
+  </ion-refresher>
+  <app-header-tool-box></app-header-tool-box>
+  <ion-grid>
+    <ion-row>
+      <ng-container *ngFor="let item of menu">
+        <ng-container *ngIf="!isLogined">
+          <ion-col size-xs="3" size-sm="2.4" size-md="2" size-lg="1.5" class="ion-align-self-center biznet-menu-item" margin-bottom *ngIf="!item.isPermission">
+            <ion-row class="ion-justify-content-center">
+              <ion-button (click)="item.handler()" mode="ios" color="light"
+                style="width: 50px; height: 50px;padding: 0px;">
+                <img class="img-menu" [attr.src]="item.imgUrl" style="padding: 0px;" />
+              </ion-button>
+            </ion-row>
+            <ion-row style="text-align: center;">
+              <p style="width: 100%;margin: 0px;min-height: 36px;max-height: 36px;" [innerHTML]="item.title"></p>
+            </ion-row>
+          </ion-col>
+        </ng-container>
+        <ng-container *ngIf="isLogined">
+          <ion-col size="3" class="ion-align-self-center biznet-menu-item ion-margin-bottom" *ngIf="!item.isPermission">
+            <ion-row class="ion-justify-content-center">
+              <ion-button (click)="item.handler()" mode="ios" color="light"
+                style="width: 50px; height: 50px;padding: 0px;">
+                <img class="img-menu" [attr.src]="item.imgUrl" style="padding: 0px;" />
+              </ion-button>
+            </ion-row>
+            <ion-row style="text-align: center;">
+              <p style="width: 100%;margin: 0px;min-height: 36px;max-height: 36px;" [innerHTML]="item.title"></p>
+            </ion-row>
+          </ion-col>
+          <ng-container *ngIf="item.isPermission && !item.role">
+            <ion-col *permission="[3]" size="3" class="ion-align-self-center biznet-menu-item ion-margin-bottom">
+              <ion-row class="ion-justify-content-center">
+                <ion-button (click)="item.handler()" mode="ios" color="light"
+                  style="width: 50px; height: 50px;padding: 0px;">
+                  <img class="img-menu" [attr.src]="item.imgUrl" style="padding: 0px;" />
+                </ion-button>
+              </ion-row>
+              <ion-row style="text-align: center;">
+                <p style="width: 100%;margin: 0px;min-height: 36px;max-height: 36px;" [innerHTML]="item.title"></p>
+              </ion-row>
+            </ion-col>
+          </ng-container>
+          <ng-container *ngIf="item.isPermission && item.role">
+            <ion-col *permission="item.role" size="3" class="ion-align-self-center biznet-menu-item ion-margin-bottom">
+              <ion-row class="ion-justify-content-center">
+                <ion-button (click)="item.handler()" mode="ios" color="light"
+                  style="width: 50px; height: 50px;padding: 0px;">
+                  <img class="img-menu" [attr.src]="item.imgUrl" style="padding: 0px;" />
+                </ion-button>
+              </ion-row>
+              <ion-row style="text-align: center;">
+                <p style="width: 100%;margin: 0px;min-height: 36px;max-height: 36px;" [innerHTML]="item.title"></p>
+              </ion-row>
+            </ion-col>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+  <ion-slides *ngIf="!slideNews.length" pager paginationType="bullets" style="height: auto;overflow: visible;"
+    autoHeight="true" centeredSlides="false" pager="true" autoplay="3000" loop="true" speed="500">
+    <ion-slide>
+      <div class="banner_skeletion">
+        <ion-card-content style="padding: 0px 13px;">
+          <img src="assets/imgs/photo.png" style="width: 92vW;height: 46vW;" class="main-banner-box-shadow">
+        </ion-card-content>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <ion-slides #slide *ngIf="slideNews.length" pager [options]="slideOpts"style="height: auto;overflow: visible;" >
+    <ion-slide *ngFor="let item of slideNews">
+      <ion-card-content style="padding: 0px 13px;">
+        <img [src]="item.imgUrl" style="width: 92vW;height: 46vW;" class="main-banner-box-shadow">
+      </ion-card-content>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-grid class="ion-padding-bottom">
+    <ng-container *ngIf="isLoading">
+      <banner title="Ưu đãi" [isLoading]="isLoading"></banner>
+      <banner title="Tin tức" [isLoading]="isLoading"></banner>
+      <permission>
+        <banner title="Kiến thức" [isLoading]="isLoading"></banner>
+      </permission>
+    </ng-container>
+    <ng-container *ngFor="let item of banners">
+      <ng-container *ngIf="isLogined">
+        <ng-container *ngIf="!item.isPermission">
+          <banner [title]="item.title" [banners]="item.banners" [isLoading]="isLoading" [id]="item.id"
+            [catId]="item.catId"></banner>
+        </ng-container>
+        <ng-container *ngIf="item.isPermission">
+          <banner *permission="item.role" [title]="item.title" [banners]="item.banners" [isLoading]="isLoading"
+            [id]="item.id" [catId]="item.catId"></banner>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="!isLogined">
+        <banner *ngIf="!item.isPermission" [title]="item.title" [banners]="item.banners" [isLoading]="isLoading"
+          [id]="item.id" [catId]="item.catId"></banner>
+      </ng-container>
+    </ng-container>
+  </ion-grid>
+</ion-content>

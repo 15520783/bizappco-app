@@ -1,0 +1,71 @@
+<ng-container>
+  <ion-grid style="padding: 10px 10px 0px 10px;" *ngIf="isLoading || banners.length">
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="ion-align-self-center biznet-head-item-banner-left">
+        <b color-main-2 style="font-size: 6vw;text-align: left;">{{title}}</b>
+      </ion-col>
+      <ion-col class="ion-text-right ion-no-padding ion-align-self-center biznet-head-item-banner-right">
+        <ion-title class="ion-no-padding ion-text-right"><ion-note color="main-orange" class="biznet-more-link" (click)="watchMore()">Xem thêm</ion-note></ion-title>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-slides #slides style="height: auto;overflow:visible;" [options]="slideOpts">
+    <ng-container *ngIf="!isLoading && banners.length">
+      <ion-slide *ngFor="let banner of banners" class="banner-slide">
+        <ion-card class="card-biznet-box-shadow  ion-no-margin" mode="ios" style="width: 250px;">
+          <ion-card-header class="ion-no-padding" style="display:flex;justify-content: center;background: #D7D5D8;height: 130px;">
+            <img style="width: 100%;" [attr.src]="banner.imgUrl" (click)="redirect(banner.id)">
+          </ion-card-header>
+          <ion-card-content style="padding: 5px;">
+            <ion-row>
+              <ion-col size="10" class="ion-padding-left ion-text-left">
+                <b  class="ion-text-left ion-text-wrap intro-text-banner" (click)="redirect(banner.id)">{{banner.title}}</b>
+                <br>
+                <ion-row class="ion-align-self-center ion-no-padding">
+                  <ion-col size="1" class="ion-no-padding" style="margin: auto;">
+                    <ion-icon src="/assets/icons/calendar.svg" style="font-size:24px;" color="main-orange"></ion-icon>
+                  </ion-col>
+                  <ion-col class="ion-no-padding ion-align-self-center" style="padding-left: 20px;">
+                    <p ion-text style="font-size:14px;">{{banner.subtitle}}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="2" class="ion-align-self-center ion-no-padding" (click)="redirect(banner.id)">
+                <img src="../../assets/icons/Group 3.png" style="height: 35px;">
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ng-container>
+    <ng-container *ngIf="isLoading">
+      <ion-slide *ngFor="let i of [].constructor(3)" class="banner-slide">
+        <ion-card class="card-biznet-box-shadow ion-no-margin" mode="ios">
+          <ion-card-header class="ion-no-padding" style="width: 250px;">
+            <ion-skeleton-text animated style="border-radius:0;height:130px;margin:0px"></ion-skeleton-text>
+          </ion-card-header>
+          <ion-card-content style="padding: 5px;">
+            <ion-row>
+              <ion-col size="10" class="ion-padding-left ion-text-left" style="padding-right: 10px;">
+                <ion-skeleton-text animated style="border-radius:0;height:15px;margin:0px"></ion-skeleton-text>
+                <ion-skeleton-text animated style="border-radius:0;height:15px;margin:5px 0"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 60%; border-radius:0;height:15px;margin:5px 0"></ion-skeleton-text>
+                <ion-row class="ion-align-self-center ion-no-padding">
+                  <ion-col size="1" class="ion-no-padding" style="margin: auto;">
+                    <ion-icon src="/assets/icons/calendar.svg" style="font-size:24px;" color="main-orange"></ion-icon>
+                  </ion-col>
+                  <ion-col class="ion-no-padding ion-align-self-center" style="padding-left: 20px;margin: auto;padding-left: 20px;">
+                    <ion-skeleton-text animated style="border-radius:0;height:15px;margin:0px"></ion-skeleton-text>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="2" class="ion-align-self-center ion-no-padding">
+                <img src="../../assets/icons/Group 3.png" style="height: 35px;">
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ng-container>
+  </ion-slides>
+</ng-container>
